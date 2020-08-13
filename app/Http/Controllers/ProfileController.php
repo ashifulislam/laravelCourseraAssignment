@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use Illuminate\Http\Request;
+use Auth;
 
 class ProfileController extends Controller
 {
@@ -15,6 +16,7 @@ class ProfileController extends Controller
     public function index()
     {
       $profiles=Profile::all();
+
 
       return view('profiles.index',compact('profiles'));
 
@@ -46,8 +48,18 @@ class ProfileController extends Controller
             'summary'=>'required'
 
         ]);
-        Profile::create($request->all());
-        return redirect()->route('profiles.index')-with('success','profiles created successfully');
+        // validate the data
+
+        // store in the database
+        $userProfile = new Profile;
+        $userProfile->user_id=Auth::user()->id;
+        $userProfile->first_name = $request->first_name;
+        $userProfile->last_name=$request->last_name;
+        $userProfile->email=$request->email;
+        $userProfile->headline=$request->headline;
+        $userProfile->summary=$request->summary;
+        $userProfile->save();
+        return redirect()->route('profiles.index')->with('success','profiles created successfully');
     }
 
     /**

@@ -25,6 +25,7 @@
         </ul>
     </div>
     @endif
+    @if(Auth::check())
     <form action="{{route('profiles.store')}}" method="post">
     @csrf
     <div class="row">
@@ -81,5 +82,6 @@
 
     </div>
     </form>
+    @endif
 
     @endsection

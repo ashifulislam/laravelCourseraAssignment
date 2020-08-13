@@ -36,19 +36,19 @@
           </tr>
         </thead>
         <tbody>
-        @foreach($profiles as $profileValue=>$profiles)
+        @foreach($profiles as $profileValue)
             <tr>
                 <td>
-                    {{$profileValue->first_name}}
+                    {{$profileValue['first_name']}}
                 </td>
                 <td>
-                    {{$profileValue->last_name}}
+                    {{$profileValue['last_name']}}
                 </td>
                 <td>
-                    {{$profileValue->headline}}
+                    {{$profileValue['email']}}
                 </td>
                 <td>
-                    {{$profileValue->summary}}
+                    {{$profileValue['headline']}}
                 </td>
                 <td>
                     <form action="{{route('profiles.destroy',$profileValue->profile_id)}}" method="post">
