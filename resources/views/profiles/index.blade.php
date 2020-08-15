@@ -51,9 +51,9 @@
                     {{$profileValue['headline']}}
                 </td>
                 <td>
-                    <form action="{{route('profiles.destroy',$profileValue->profile_id)}}" method="post">
-                        <a class="btn btn-success"  href="{{route('profiles.show',$profileValue->profile_id)}}">show</a>
-                        <a class="btn btn-success" href="{{route('profiles.edit',$profileValue->profile_id)}}">edit</a>
+                    <form action="{{route('profiles.destroy',$profileValue['id'])}}" method="post">
+                        <a class="btn btn-success"  href="{{route('profiles.show',$profileValue['id'])}}">show</a>
+                        <a class="btn btn-success" href="{{route('profiles.edit',$profileValue['id'])}}">edit</a>
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-danger">Delete</button>
