@@ -8,7 +8,10 @@
             <div class="pull-left">
                 <h1>Assignement Of Coursera</h1>
             </div>
+            <div class="pull-right">
+                <a class="btn btn-success" href="{{route('profiles.create')}}">Create</a>
 
+            </div>
         </div>
     </div>
     @if($message =Session::get('success'))
@@ -18,7 +21,10 @@
     @endif
 
 
+    <head>
+        <title>Crud operation</title>
 
+    </head>
     <body>
     <table class="table table-bordered">
         <thead>
@@ -30,23 +36,22 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($viewSingleInfo as $profileInfo)
+
             <tr>
                 <td>
-                    {{$profileInfo['first_name']}}
+                    {{$profileInfo->first_name}}
                 </td>
                 <td>
-                    {{$profileInfo['last_name']}}
+                    {{$profileInfo->last_name}}
+
                 </td>
                 <td>
-                    {{$profileInfo['email']}}
+                    {{$profileInfo->headline}}
                 </td>
                 <td>
-                    {{$profileInfo['headline']}}
+                    {{$profileInfo->summary}}
                 </td>
 
-            </tr>
-        @endforeach
         </tbody>
 
     </table>
@@ -54,3 +59,4 @@
     @endsection
     </body>
 </html>
+

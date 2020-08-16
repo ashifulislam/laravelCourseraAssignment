@@ -69,10 +69,11 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        $profile=Profile::find($id);
+        $profilesInformation=Profile::find($id);
+        return view('profiles.show')->with('profileInfo',$profilesInformation);
 
 
-        return view('profiles.show',['viewSingleInfo'=>$profile]);
+
     }
 
     /**
@@ -83,7 +84,8 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profilesInformation=Profile::find($id);
+        return view('profiles.edit')->with('profileInfo',$profilesInformation);
     }
 
     /**
@@ -95,7 +97,28 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+             'First_name'=>'required',
+                'Last_name'=>'required',
+                'Email'=>'required',
+                'Summary'=>'required',
+                'Headline'=>'required'
+            ]);
+        $profileUpdate=Profile::find($id);
+        $profileUpdate->user_id=Auth::user()->id;
+        $profileUpdate->first_name=$request->First_name;
+        $profileUpdate->last_name=$request->Last_name;
+        $profileUpdate->email=$request->Email;
+        $profileUpdate->headline=$request->Headline;
+        $profileUpdate->summary=$request->Summary;
+        $profileUpdate->save();
+        return redirect()->route('profiles.index')->with('success','Profile Updated Successfully');
+
+
+
+
+
     }
 
     /**
@@ -106,6 +129,9 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $profileDelete=Profile::find($id);
+       $profileDelete->delete();
+       return redirect()->route('profiles.index')->with('Success','Profile Deleted');
+
     }
 }

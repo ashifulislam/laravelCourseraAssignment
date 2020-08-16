@@ -54,9 +54,10 @@
                     <form action="{{route('profiles.destroy',$profileValue['id'])}}" method="post">
                         <a class="btn btn-success"  href="{{route('profiles.show',$profileValue['id'])}}">show</a>
                         <a class="btn btn-success" href="{{route('profiles.edit',$profileValue['id'])}}">edit</a>
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+
+                      @csrf
+                       @method('delete')
+                        <button type="submit" onclick="return confirm('Are you want to sure?')" class="btn btn-danger">Delete</button>
                     </form>
                 </td>
             </tr>
