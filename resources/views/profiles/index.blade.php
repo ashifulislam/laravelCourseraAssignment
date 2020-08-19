@@ -50,6 +50,7 @@
                 <td>
                     {{$profileValue['headline']}}
                 </td>
+                @if(Auth::check())
                 <td>
                     <form action="{{route('profiles.destroy',$profileValue['id'])}}" method="post">
                         <a class="btn btn-success"  href="{{route('profiles.show',$profileValue['id'])}}">show</a>
@@ -61,6 +62,7 @@
                     </form>
                 </td>
             </tr>
+            @endif
             @endforeach
         </tbody>
 
